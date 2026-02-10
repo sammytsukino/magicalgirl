@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle</title>
+</head>
+<body>
+
+<div th:if="${girl != null}">
+    <h1 th:text="${girl.name}"></h1>
+    <p>Poder: <span th:text="${girl.power}"></span></p>
+</div>
+
+<div th:if="${girl == null}">
+    <p>No encontrada</p>
+</div>
+
+<a href="/">Volver</a>
+
+</body>
+</html>

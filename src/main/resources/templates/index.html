@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chicas Mágicas</title>
+</head>
+<body>
+<h1>Lista de chicas mágicas</h1>
+
+<ul>
+    <li th:each="girl : ${girls}">
+        <a th:href="@{'/girl/' + ${girl.id}}"
+           th:text="${girl.name}"></a>
+    </li>
+</ul>
+
+</body>
+</html>
