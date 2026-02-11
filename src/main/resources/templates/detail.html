@@ -2,20 +2,127 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Detalle</title>
+    <title>Detalle de Chica Mágica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0c3fc 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(80, 0, 120, 0.15);
+            padding: 2.5rem 2rem 2rem 2rem;
+            position: relative;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .back-btn:hover {
+            color: #4c1d95;
+        }
+        .character-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(124, 58, 237, 0.15);
+        }
+        .character-info {
+            flex: 1;
+        }
+        .character-info h1 {
+            margin: 0 0 0.3rem 0;
+            font-size: 2.1rem;
+            color: #7c3aed;
+        }
+        .stats {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            background: #f3e8ff;
+            border-radius: 10px;
+            padding: 0.7rem 1rem;
+        }
+        .stat i {
+            color: #a21caf;
+            font-size: 1.5rem;
+            min-width: 32px;
+            text-align: center;
+        }
+        .not-found {
+            text-align: center;
+            color: #a21caf;
+            font-size: 1.3rem;
+            margin-top: 3rem;
+        }
+    </style>
 </head>
 <body>
 
-<div th:if="${girl != null}">
-    <h1 th:text="${girl.name}"></h1>
-    <p>Poder: <span th:text="${girl.power}"></span></p>
-</div>
+<div class="container">
+    <a href="/" class="back-btn"><i class="fa fa-arrow-left"></i> Volver</a>
 
-<div th:if="${girl == null}">
-    <p>No encontrada</p>
-</div>
+    <div th:if="${girl != null}">
+        <div class="character-header">
+            <div class="avatar">
+                <i class="fa-solid fa-hat-wizard"></i>
+            </div>
+            <div class="character-info">
+                <h1 th:text="${girl.name}"></h1>
+                <div class="stat">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span><strong>Poder:</strong> <span th:text="${girl.power}"></span></span>
+                </div>
+                <div class="stat" th:if="${girl.element != null}">
+                    <i class="fa-solid fa-gem"></i>
+                    <span><strong>Elemento:</strong> <span th:text="${girl.element}"></span></span>
+                </div>
+                <div class="stat" th:if="${girl.level != null}">
+                    <i class="fa-solid fa-star"></i>
+                    <span><strong>Nivel:</strong> <span th:text="${girl.level}"></span></span>
+                </div>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="stat" th:if="${girl.description != null}">
+                <i class="fa-solid fa-book"></i>
+                <span th:text="${girl.description}"></span>
+            </div>
+        </div>
+    </div>
 
-<a href="/">Volver</a>
+    <div th:if="${girl == null}" class="not-found">
+        <i class="fa-solid fa-triangle-exclamation"></i> No encontrada
+    </div>
+</div>
 
 </body>
 </html>
